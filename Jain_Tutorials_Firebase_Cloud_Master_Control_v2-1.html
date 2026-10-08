@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Jain Tutorials</title>
+<style>
+:root{--navy:#0b1730;--navy2:#18325e;--gold:#d7a84b;--bg:#f5f6f8;--card:#fff;--text:#172033;--muted:#68748a;--line:#e5e8ee;--green:#238653;--red:#bd4b4b}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}button{cursor:pointer}
+.screen{display:none;min-height:100vh}.screen.active{display:block}
+.top{background:var(--navy);color:#fff;padding:18px 6%;display:flex;align-items:center;justify-content:space-between}.logo{font-weight:800;letter-spacing:.5px}.nav button{background:none;border:0;color:#fff;margin-left:18px;font-size:14px}
+.hero{background:linear-gradient(135deg,#0b1730,#18325e);color:#fff;padding:85px 6% 100px}.hero-inner{max-width:1100px;margin:auto}.badge{color:#e8bf66;font-size:12px;font-weight:bold;letter-spacing:1px}.hero h1{font-size:clamp(42px,7vw,70px);line-height:1.03;margin:18px 0}.hero p{max-width:680px;color:#cbd5e6;font-size:17px;line-height:1.7}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{border-radius:10px;padding:14px 20px;font-weight:bold;border:0}.gold{background:var(--gold);color:var(--navy)}.outline{background:transparent;color:#fff;border:1px solid #63728c}
+.container{max-width:1100px;margin:auto;padding:65px 6%}.small{color:#9a7221;font-size:12px;font-weight:bold;letter-spacing:1.4px;text-transform:uppercase}h2{font-size:34px;margin:8px 0 12px}.desc{color:var(--muted)}.cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px}.subjects{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.subject{background:#f0f2f6;padding:7px 10px;border-radius:8px;font-size:12px;font-weight:bold}.features{background:#fff}.featuregrid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:28px}.feature{border:1px solid var(--line);border-radius:14px;padding:20px}.feature p{font-size:13px;color:var(--muted)}footer{background:var(--navy);color:#b6c1d2;padding:30px;text-align:center}
+.loginwrap{max-width:440px;margin:auto;padding:35px 22px}.back{background:none;border:0;color:var(--muted);padding:8px 0;margin-bottom:35px}.loginhead{text-align:center;margin-bottom:25px}.loginhead h2{margin:10px 0 5px}.formcard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:0 18px 50px #00000012}label{display:block;font-weight:bold;font-size:13px;margin:15px 0 7px}input,select,textarea{width:100%;padding:12px 13px;border:1px solid #d8dce5;border-radius:9px;background:#fff;outline:none}textarea{min-height:90px;resize:vertical}.signin{width:100%;margin-top:23px;background:var(--navy);color:#fff;border:0;padding:14px;border-radius:10px;font-weight:bold}.demo{font-size:11px;color:var(--muted);text-align:center;margin-top:14px}
+.app{display:flex;min-height:100vh}.sidebar{width:245px;background:var(--navy);color:#fff;padding:24px 15px;position:fixed;top:0;bottom:0;left:0;z-index:5;overflow-y:auto}.sidebrand{font-size:19px;font-weight:800;padding:10px 12px 25px;border-bottom:1px solid #31415d;margin-bottom:18px}.sidebrand span{display:block;font-size:11px;color:#aebbd0;font-weight:normal;margin-top:5px}.navbtn{width:100%;border:0;background:transparent;color:#c9d3e3;text-align:left;padding:12px 14px;border-radius:9px;margin:3px 0;font-size:14px}.navbtn:hover,.navbtn.active{background:#1b3158;color:#fff}.logout{position:sticky;bottom:0;margin-top:18px;width:100%;border:1px solid #3a4a66;background:var(--navy);color:#c9d3e3;border-radius:9px;padding:11px}.main{margin-left:245px;width:calc(100% - 245px);padding:28px 34px}.mobiletop{display:none;background:var(--navy);color:white;padding:15px;margin:-28px -34px 25px}.dashhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.greeting h1{margin:0 0 4px;font-size:29px}.greeting p{margin:0;color:var(--muted);font-size:14px}.avatar{width:43px;height:43px;background:var(--navy);color:white;border:0;border-radius:50%;display:grid;place-items:center;font-weight:bold}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:22px}.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:19px}.stat-label{color:var(--muted);font-size:12px}.stat-value{font-size:25px;font-weight:800;margin-top:5px}.green{color:var(--green)}.goldtxt{color:#a87816}.grid{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}.portalcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:19px;margin-bottom:20px}.cardhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.cardhead h3{margin:0;font-size:18px}.notice{padding:13px 0;border-bottom:1px solid var(--line)}.notice:last-child{border:0}.notice strong{font-size:14px}.notice p{font-size:12px;color:var(--muted);margin:5px 0}.item{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.item:last-child{border:0}.ico{width:38px;height:38px;border-radius:9px;background:#f1f3f7;display:grid;place-items:center}.itemmain{flex:1}.itemmain strong{font-size:13px}.itemmain small{display:block;color:var(--muted);margin-top:3px;font-size:11px}.pill{font-size:10px;font-weight:bold;padding:5px 8px;border-radius:20px;background:#edf7f1;color:var(--green)}.pending{background:#fff6df;color:#9a7221}.page{display:none}.page.active{display:block}.table{width:100%;border-collapse:collapse;font-size:13px}.table td,.table th{padding:12px 7px;border-bottom:1px solid var(--line);text-align:left}.table th{color:var(--muted);font-size:11px;text-transform:uppercase}.action{border:0;background:var(--navy);color:#fff;border-radius:7px;padding:8px 11px;font-size:12px}.danger{background:#fff0f0;color:var(--red);border:1px solid #f1caca}.empty{text-align:center;padding:25px;color:var(--muted);font-size:13px}
+@media(max-width:850px){.cards{grid-template-columns:1fr}.featuregrid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}
+@media(max-width:650px){.sidebar{display:none}.main{margin:0;width:100%;padding:20px}.mobiletop{display:flex;justify-content:space-between}.featuregrid{grid-template-columns:1fr 1fr}.hero{padding-top:65px}}
+.saved-login{margin-top:12px;padding:12px 14px;background:#f5f6f8;border:1px solid var(--line);border-radius:10px;font-size:12px;color:var(--muted)}
+.saved-login button{border:0;background:none;color:var(--navy);font-weight:bold;margin-left:8px}
+.saved-login .dismiss{color:var(--muted);font-weight:normal}
+
+/* Merged standalone test engine styles */
+.action{cursor:pointer;position:relative;z-index:20;pointer-events:auto;touch-action:manipulation}
+.portalcard .signin{cursor:pointer}
+#activeTestCard{scroll-margin-top:20px}
+.js-test-action{position:relative;z-index:30;pointer-events:auto;touch-action:manipulation}.item{position:relative}
+
+/* V10: make test buttons definitely tappable */
+.jt-attempt-test,.jt-open-pdf{
+ position:relative!important;
+ z-index:9999!important;
+ pointer-events:auto!important;
+ touch-action:manipulation!important;
+ cursor:pointer!important;
+ display:inline-flex!important;
+ align-items:center;
+ justify-content:center;
+ min-height:42px;
+}
+</style>
+</head>
+<body>
+
+<!-- PUBLIC WEBSITE -->
+<section id="homeScreen" class="screen active">
+<header class="top"><div class="logo">JAIN TUTORIALS</div><div class="nav"><button onclick="openLogin('student')">Student Portal</button><button onclick="openLogin('teacher')">Teacher / Admin</button><button onclick="openLogin('master')">Master Control</button></div></header>
+<section class="hero"><div class="hero-inner"><div class="badge">ACADEMIC EXCELLENCE • CLASSES 9–12</div><h1>Learn with clarity.<br><span style="color:#e8bf66">Grow with confidence.</span></h1><p>Structured academic support for Classes 9–10 and Commerce students in Classes 11–12.</p><div class="buttons"><button class="btn gold" onclick="document.getElementById('programs').scrollIntoView()">Explore Programs</button><button class="btn outline" onclick="openLogin('student')">🎓 Student Portal →</button><button class="btn outline" onclick="openLogin('teacher')">🔐 Teacher / Admin →</button><button class="btn outline" onclick="openLogin('master')">🛡️ Master Control →</button></div></div></section>
+<section class="container" id="programs"><div class="small">Programs</div><h2>Classes we teach.</h2><div class="cards"><div class="card"><div class="small">Classes 9–10</div><h3>All Subjects</h3><p class="desc">Academic support organized by class and batch.</p></div><div class="card"><div class="small">Classes 11–12</div><h3>Commerce</h3><p class="desc">Commerce subjects organized by class and batch.</p></div></div></section>
+<section class="features"><div class="container"><div class="small">Platform</div><h2>One connected system.</h2><div class="featuregrid"><div class="feature">📚<h3>Study Material</h3><p>Teacher uploads flow to assigned students.</p></div><div class="feature">✅<h3>Attendance</h3><p>Attendance is shared through the central data layer.</p></div><div class="feature">🧪<h3>Tests & Results</h3><p>Teacher-created tests appear for students.</p></div><div class="feature">📢<h3>Announcements</h3><p>One announcement source for the institute.</p></div></div></div></section>
+<footer><b>JAIN TUTORIALS</b><br>Learn. Practice. Excel.</footer>
+</section>
+
+<!-- LOGIN -->
+<section id="loginScreen" class="screen">
+<div class="loginwrap"><button class="back" onclick="goHome()">← Back to Jain Tutorials</button><div class="loginhead"><h2 id="loginTitle">Student Portal</h2><p class="desc" id="loginSubtitle">Sign in.</p></div><div class="formcard">
+<div id="studentFields">
+<label>Full Name</label><input id="fullName" type="text" placeholder="Enter your full name">
+<label>Email Address</label><input id="email" name="email" type="email" autocomplete="username" placeholder="Enter your email address">
+<label>Password</label><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password">
+<label>Class</label><select id="studentClass"><option value="">Select your class</option><option>Class 9</option><option>Class 10</option><option>Class 11 Commerce</option><option>Class 12 Commerce</option></select>
+<label>Batch</label><select id="studentBatch"><option value="">Select your batch</option><option>Batch A</option><option>Batch B</option></select>
+</div>
+<div id="teacherFields" style="display:none">
+<label>Teacher Name</label><input id="teacherName" type="text" placeholder="Enter teacher name">
+<label>Email Address</label><input id="teacherEmail" name="teacherEmail" type="email" autocomplete="username" placeholder="Enter teacher email">
+<label>Password</label><input id="teacherPassword" name="teacherPassword" type="password" autocomplete="current-password" placeholder="Enter password">
+</div>
+<div id="masterFields" style="display:none">
+<label>Master Email</label><input id="masterEmail" name="masterEmail" type="email" autocomplete="username" placeholder="Master Firebase email">
+<label>Master Password</label><input id="masterPassword" name="masterPassword" type="password" autocomplete="current-password" placeholder="Enter master password">
+<p class="demo">Master credentials are verified by Firebase Authentication. No master password is stored in this HTML.</p>
+</div>
+<button class="signin" onclick="login()">Continue →</button>
+<div id="saveLoginPrompt" class="saved-login" style="display:none">
+  <span id="saveLoginText">Save your login information on this device?</span>
+  <button type="button" onclick="saveCurrentLogin()">Save</button>
+  <button type="button" class="dismiss" onclick="dismissSaveLogin()">Dismiss</button>
+</div>
+<p class="demo">Cloud mode: Firebase Authentication + Cloud Firestore. If Firebase config is not filled in, this page uses local prototype mode.</p>
+</div></div>
+</section>
+
+<!-- STUDENT PORTAL -->
+<section id="studentPortal" class="screen">
+<div class="app"><aside class="sidebar"><div class="sidebrand">JAIN TUTORIALS<span>Student Portal</span></div>
+<button class="navbtn active" onclick="studentPage('studentDashboard',this)">🏠 Dashboard</button><button class="navbtn" onclick="studentPage('studentClasses',this)">📚 My Classes</button><button class="navbtn" onclick="studentPage('studentMaterial',this)">📄 Study Material</button><button class="navbtn" onclick="studentPage('studentHomework',this)">📝 Homework</button><button class="navbtn" onclick="studentPage('studentTests',this)">🧪 Tests</button><button class="navbtn" onclick="studentPage('studentResults',this)">📊 Results</button><button class="navbtn" onclick="studentPage('studentAttendance',this)">✅ Attendance</button><button class="navbtn" onclick="studentPage('studentTimetable',this)">📅 Timetable</button><button class="navbtn" onclick="studentPage('studentFees',this)">💰 Fees</button><button class="navbtn" onclick="studentPage('studentProfile',this)">👤 Profile</button><button class="logout" onclick="firebaseLogout()">Log Out</button></aside>
+<main class="main"><div class="mobiletop"><b>JAIN TUTORIALS</b><span>Student Portal</span></div>
+
+<div id="studentDashboard" class="page active"><div class="dashhead"><div class="greeting"><h1 id="studentWelcome">Welcome 👋</h1><p id="studentClassBatch">Class and batch not assigned yet</p></div><button class="avatar" id="studentAvatar" onclick="studentPage('studentProfile',document.querySelectorAll('#studentPortal .navbtn')[9])">—</button></div>
+<div class="stats"><div class="stat"><div class="stat-label">Attendance</div><div class="stat-value green">0%</div></div><div class="stat"><div class="stat-label">Pending Homework</div><div class="stat-value" id="homeworkCount">0</div></div><div class="stat"><div class="stat-label">Upcoming Tests</div><div class="stat-value goldtxt" id="testCount">0</div></div><div class="stat"><div class="stat-label">Average Result</div><div class="stat-value">0%</div></div></div>
+<div class="grid"><div><div class="portalcard"><div class="cardhead"><h3>📢 Latest Announcements</h3></div><div id="dashboardAnnouncements" class="empty">No announcements yet.</div></div><div class="portalcard"><div class="cardhead"><h3>🧪 Available Tests</h3></div><div id="dashboardTests" class="empty">No tests scheduled.</div></div></div><div><div class="portalcard"><div class="cardhead"><h3>📅 Today's Classes</h3></div><div class="empty">No classes scheduled.</div></div><div class="portalcard"><div class="cardhead"><h3>📝 Homework</h3></div><div id="dashboardHomework" class="empty">No homework assigned.</div></div></div></div></div>
+
+<div id="studentClasses" class="page"><div class="greeting"><h1>My Classes</h1><p>Classes assigned by the administration.</p></div><div class="portalcard"><div class="empty">No classes assigned yet.</div></div></div>
+<div id="studentMaterial" class="page"><div class="greeting"><h1>Study Material</h1><p>Material uploaded by your teachers.</p></div><div class="portalcard"><div id="materialList" class="empty">No study material yet.</div></div></div>
+<div id="studentHomework" class="page"><div class="greeting"><h1>Homework</h1><p>Assignments from your teachers.</p></div><div class="portalcard"><div id="homeworkList" class="empty">No homework assigned.</div></div></div>
+<div id="studentTests" class="page">
+<div class="greeting"><h1>Tests</h1><p>Tests assigned to your class/batch. Online tests can be attempted here.</p></div>
+<div class="portalcard"><div id="testList" class="empty">No tests available.</div></div>
+<div id="activeTestCard" class="portalcard" style="display:none">
+  <div id="activeTestContent"></div>
+</div>
+</div>
+<div id="studentResults" class="page"><div class="greeting"><h1>Results</h1><p>Your completed test results.</p></div><div class="portalcard"><div id="studentResultsList" class="empty">No results yet.</div></div></div>
+<div id="studentAttendance" class="page"><div class="greeting"><h1>Attendance</h1><p>Your attendance record.</p></div><div class="portalcard"><div class="stat-value green">0%</div><p class="desc">No attendance recorded yet.</p></div></div>
+<div id="studentTimetable" class="page"><div class="greeting"><h1>Timetable</h1><p>Your assigned timetable.</p></div><div class="portalcard"><div class="empty">No timetable available.</div></div></div>
+<div id="studentFees" class="page"><div class="greeting"><h1>Fees</h1><p>Your fee information.</p></div><div class="portalcard"><div class="stat-value">₹0</div><p class="desc">No fee information added yet.</p></div></div>
+<div id="studentProfile" class="page"><div class="greeting"><h1>My Profile</h1><p>Your account information.</p></div><div class="portalcard"><table class="table"><tr><td><b>Name</b></td><td id="profileName">Not added</td></tr><tr><td><b>Email</b></td><td id="profileEmail">Not added</td></tr><tr><td><b>Class</b></td><td id="profileClass">Not assigned</td></tr><tr><td><b>Batch</b></td><td id="profileBatch">Not assigned</td></tr></table></div></div>
+</main></div></section>
+
+<!-- MASTER CONTROL -->
+<section id="masterPortal" class="screen">
+<div class="app"><aside class="sidebar"><div class="sidebrand">JAIN TUTORIALS<span>Master Control</span></div>
+<button class="navbtn active" onclick="masterPage('masterDashboard',this)">🛡️ Dashboard</button>
+<button class="navbtn" onclick="masterPage('masterStudents',this)">👨‍🎓 Student Profiles</button>
+<button class="logout" onclick="firebaseLogout()">Log Out</button></aside>
+<main class="main"><div class="mobiletop"><b>JAIN TUTORIALS</b><span>Master Control</span></div>
+<div id="masterDashboard" class="page active"><div class="greeting"><h1>Master Control</h1><p id="masterWelcome">Secure student profile management.</p></div>
+<div class="stats"><div class="stat"><div class="stat-label">Total Students</div><div class="stat-value" id="masterStudentCount">0</div></div><div class="stat"><div class="stat-label">Classes</div><div class="stat-value" id="masterClassCount">0</div></div><div class="stat"><div class="stat-label">Batches</div><div class="stat-value" id="masterBatchCount">0</div></div><div class="stat"><div class="stat-label">Access</div><div class="stat-value green">MASTER</div></div></div>
+<div class="portalcard"><h3>Student Directory</h3><p class="desc">View and remove student Firestore profiles. Removing a profile here does not delete the Firebase Authentication account.</p><button class="action" onclick="masterPage('masterStudents',document.querySelector('#masterPortal .navbtn:nth-of-type(2)'))">Open Student Profiles →</button></div></div>
+<div id="masterStudents" class="page"><div class="greeting"><h1>Student Profiles</h1><p>Search, view and remove student profile records.</p></div>
+<div class="portalcard"><input id="masterStudentSearch" placeholder="Search by name, email, class or batch" oninput="renderMasterStudents()"></div>
+<div class="portalcard"><div id="masterStudentsList" class="empty">Loading student profiles...</div></div></div>
+</main></div></section>
+
+<!-- TEACHER PORTAL -->
+<section id="teacherPortal" class="screen">
+<div class="app"><aside class="sidebar"><div class="sidebrand">JAIN TUTORIALS<span>Teacher / Admin Portal</span></div>
+<button class="navbtn active" onclick="teacherPage('teacherDashboard',this)">🏠 Dashboard</button>
+<button class="navbtn" onclick="teacherPage('manageTests',this)">🧪 Tests</button>
+<button class="navbtn" onclick="teacherPage('manageAnnouncements',this)">📢 Announcements</button>
+<button class="navbtn" onclick="teacherPage('manageHomework',this)">📝 Homework</button>
+<button class="navbtn" onclick="teacherPage('manageMaterial',this)">📄 Study Material</button>
+<button class="navbtn" onclick="teacherPage('manageStudents',this)">👨‍🎓 Students</button>
+<button class="navbtn" onclick="teacherPage('manageAttendance',this)">✅ Attendance</button><button class="navbtn" onclick="teacherPage('manageLoginHistory',this)">🕘 Login History</button>
+<button class="logout" onclick="firebaseLogout()">Log Out</button></aside>
+<main class="main"><div class="mobiletop"><b>JAIN TUTORIALS</b><span>Teacher / Admin</span></div>
+
+<div id="teacherDashboard" class="page active"><div class="greeting"><h1>Teacher Dashboard</h1><p id="teacherWelcome">Manage your academic data.</p></div><div class="stats"><div class="stat"><div class="stat-label">Students</div><div class="stat-value" id="teacherStudentCount">0</div></div><div class="stat"><div class="stat-label">Tests</div><div class="stat-value" id="teacherTestCount">0</div></div><div class="stat"><div class="stat-label">Announcements</div><div class="stat-value" id="teacherAnnouncementCount">0</div></div><div class="stat"><div class="stat-label">Homework</div><div class="stat-value" id="teacherHomeworkCount">0</div></div></div>
+<div class="portalcard"><h3>🔗 Shared Data Connection</h3><p class="desc">Anything you create here is written to the shared prototype data store. Student Portal reads the same store.</p></div></div>
+
+<div id="manageTests" class="page">
+<div class="greeting"><h1>Tests</h1><p>Create an online MCQ test or publish a PDF test.</p></div>
+
+<div class="portalcard">
+<label>Test Type</label>
+<select id="testType" onchange="toggleTestType()">
+  <option value="online">Online Test</option>
+  <option value="pdf">PDF Test</option>
+</select>
+
+<label>Test Name</label>
+<input id="testName" placeholder="e.g. Accountancy Unit Test 1">
+
+<label>Subject</label>
+<input id="testSubject" placeholder="e.g. Accountancy">
+
+<label>Class</label>
+<select id="testClass">
+  <option>Class 9</option><option>Class 10</option>
+  <option>Class 11 Commerce</option><option>Class 12 Commerce</option>
+</select>
+
+<label>Batch</label>
+<select id="testBatch"><option>Batch A</option><option>Batch B</option></select>
+
+<label>Available Date & Time</label>
+<input id="testDate" type="datetime-local">
+
+<div id="pdfTestFields" style="display:none">
+  <label>Test PDF</label>
+  <input id="testPdf" type="file" accept="application/pdf">
+</div>
+
+<div id="onlineTestFields">
+  <label>Duration (minutes)</label>
+  <input id="testDuration" type="number" min="1" value="30">
+  <div id="questionBuilder"></div>
+  <button type="button" class="action" style="margin-top:12px" onclick="addQuestion()">+ Add Question</button>
+</div>
+
+<button class="signin" onclick="createTest()">Publish Test</button>
+</div>
+
+<div class="portalcard">
+<h3>Published Tests</h3>
+<div id="teacherTestsList"></div>
+</div>
+</div>
+<div id="manageAnnouncements" class="page"><div class="greeting"><h1>Announcements</h1><p>Publish an announcement to selected students.</p></div><div class="portalcard"><label>Announcement Title</label><input id="announcementTitle" placeholder="Title"><label>Message</label><textarea id="announcementMessage" placeholder="Write the announcement..."></textarea><label>Class</label><select id="announcementClass"><option>All Classes</option><option>Class 9</option><option>Class 10</option><option>Class 11 Commerce</option><option>Class 12 Commerce</option></select><label>Batch</label><select id="announcementBatch"><option>All Batches</option><option>Batch A</option><option>Batch B</option></select><button class="signin" onclick="createAnnouncement()">Publish Announcement</button></div><div class="portalcard"><h3>Published Announcements</h3><div id="teacherAnnouncementsList"></div></div></div>
+
+<div id="manageHomework" class="page"><div class="greeting"><h1>Homework</h1><p>Create assignments for students.</p></div><div class="portalcard"><label>Homework Title</label><input id="homeworkTitle" placeholder="Assignment title"><label>Subject</label><input id="homeworkSubject" placeholder="Subject"><label>Class</label><select id="homeworkClass"><option>Class 9</option><option>Class 10</option><option>Class 11 Commerce</option><option>Class 12 Commerce</option></select><label>Batch</label><select id="homeworkBatch"><option>Batch A</option><option>Batch B</option></select><label>Due Date</label><input id="homeworkDue" type="date"><button class="signin" onclick="createHomework()">Publish Homework</button></div><div class="portalcard"><h3>Published Homework</h3><div id="teacherHomeworkList"></div></div></div>
+
+<div id="manageMaterial" class="page"><div class="greeting"><h1>Study Material</h1><p>Add a material record for students.</p></div><div class="portalcard"><label>Material Title</label><input id="materialTitle" placeholder="e.g. Chapter 1 Notes"><label>Subject</label><input id="materialSubject" placeholder="Subject"><label>Class</label><select id="materialClass"><option>Class 9</option><option>Class 10</option><option>Class 11 Commerce</option><option>Class 12 Commerce</option></select><label>Batch</label><select id="materialBatch"><option>Batch A</option><option>Batch B</option></select><label>Material Link</label><input id="materialLink" placeholder="https://..."><button class="signin" onclick="createMaterial()">Publish Material</button></div><div class="portalcard"><h3>Published Material</h3><div id="teacherMaterialList"></div></div></div>
+
+<div id="manageStudents" class="page"><div class="greeting"><h1>Students</h1><p>Students registered in this browser prototype.</p></div><div class="portalcard"><div id="studentsList" class="empty">No students registered.</div></div></div>
+<div id="manageAttendance" class="page"><div class="greeting"><h1>Attendance</h1><p>Attendance management will be connected to individual student records next.</p></div><div class="portalcard"><div class="empty">No attendance records yet.</div></div></div>
+<div id="manageLoginHistory" class="page"><div class="greeting"><h1>Login History</h1><p>Students and staff who have signed in.</p></div>
+<div class="portalcard"><div id="loginHistoryList" class="empty">No login records yet.</div></div></div>
+</main></div></section>
+
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged }
+  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import { getFirestore, collection, doc, setDoc, addDoc, getDoc, getDocs, query, where, serverTimestamp, deleteDoc }
+  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBywM3kw49Y0_RLVOTwh5Tw0-4wCo-V4gU",
+  authDomain: "jain-tutorials-c3ff1.firebaseapp.com",
+  projectId: "jain-tutorials-c3ff1",
+  storageBucket: "jain-tutorials-c3ff1.firebasestorage.app",
+  messagingSenderId: "882605618087",
+  appId: "1:882605618087:web:1b0703f68aec2e693efc82",
+  measurementId: "G-3SY7N81T45"
+};
+
+const firebaseReady = !Object.values(firebaseConfig).some(v => String(v).startsWith("PASTE_"));
+let firebaseApp=null, auth=null, cloudDB=null, cloudStorage=null;
+
+if(firebaseReady){
+  firebaseApp=initializeApp(firebaseConfig);
+  auth=getAuth(firebaseApp);
+  cloudDB=getFirestore(firebaseApp);
+  cloudStorage=getStorage(firebaseApp);
+}
+
+window.firebaseState={ready:firebaseReady,auth,db:cloudDB,storage:cloudStorage};
+window.cloudUser=null;
+window.cloudUserProfile=null;
+
+async function loadProfile(uid){
+  const s=await getDoc(doc(cloudDB,"users",uid));
+  return s.exists()?{id:s.id,...s.data()}:null;
+}
+
+
+window.recordLogin=async function(user,profile){
+  if(!firebaseReady || !user || !profile) return;
+  await addDoc(collection(cloudDB,"loginHistory"),{
+    uid:user.uid,
+    name:profile.name || "",
+    email:profile.email || user.email || "",
+    role:profile.role || "",
+    loginAt:serverTimestamp()
+  });
+};
+
+window.refreshLoginHistory=async function(){
+  if(!firebaseReady) return;
+  const rows=await cloudAll("loginHistory");
+  rows.sort((a,b)=>{
+    const ta=a.loginAt?.seconds||0, tb=b.loginAt?.seconds||0;
+    return tb-ta;
+  });
+  loginHistoryList.innerHTML=rows.length
+    ? '<table class="table"><tr><th>Name</th><th>Email</th><th>Role</th><th>Login</th></tr>'+
+      rows.map(x=>{
+        const t=x.loginAt?.seconds ? new Date(x.loginAt.seconds*1000).toLocaleString() : "Just now";
+        return `<tr><td>${esc(x.name)}</td><td>${esc(x.email)}</td><td>${esc(x.role)}</td><td>${esc(t)}</td></tr>`;
+      }).join("")+'</table>'
+    : '<div class="empty">No login records yet.</div>';
+};
+
+window.toggleTestType=function(){
+  const type=document.getElementById("testType")?.value||"online";
+  document.getElementById("pdfTestFields").style.display=type==="pdf"?"block":"none";
+  document.getElementById("onlineTestFields").style.display=type==="online"?"block":"none";
+  if(type==="online" && document.getElementById("questionBuilder").children.length===0) addQuestion();
+};
+
+window.addQuestion=function(){
+  const box=document.getElementById("questionBuilder");
+  const n=box.children.length+1;
+  const div=document.createElement("div");
+  div.className="portalcard";
+  div.style.marginTop="15px";
+  div.innerHTML=`
+    <b>Question ${n}</b>
+    <label>Question</label>
+    <textarea class="qtext" placeholder="Write your question"></textarea>
+    <label>Option A</label><input class="qopt" placeholder="Option A">
+    <label>Option B</label><input class="qopt" placeholder="Option B">
+    <label>Option C</label><input class="qopt" placeholder="Option C">
+    <label>Option D</label><input class="qopt" placeholder="Option D">
+    <label>Correct Answer</label>
+    <select class="qanswer">
+      <option value="">Select correct option</option>
+      <option value="A">A</option><option value="B">B</option>
+      <option value="C">C</option><option value="D">D</option>
+    </select>
+    <label>Marks</label>
+    <input class="qmarks" type="number" min="1" value="1">
+    <button type="button" class="danger" style="margin-top:10px;padding:8px 11px;border-radius:7px" onclick="this.parentElement.remove();renumberQuestions()">Remove</button>
+  `;
+  box.appendChild(div);
+};
+
+window.renumberQuestions=function(){
+  [...document.querySelectorAll("#questionBuilder > .portalcard")].forEach((q,i)=>{
+    q.querySelector("b").textContent="Question "+(i+1);
+  });
+};
+
+window.collectQuestions=function(){
+  return [...document.querySelectorAll("#questionBuilder > .portalcard")].map(card=>({
+    text:card.querySelector(".qtext").value.trim(),
+    type:"mcq",
+    options:[...card.querySelectorAll(".qopt")].map(x=>x.value.trim()),
+    answer:card.querySelector(".qanswer").value,
+    marks:Number(card.querySelector(".qmarks").value)||1
+  }));
+};
+
+
+
+
+
+window.beginPortalTest=function(){
+  const t=window.activeOnlineTest;
+  if(!t)return;
+  const content=document.getElementById("activeTestContent");
+  content.innerHTML=`
+    <div class="cardhead"><h3>${esc(t.name)}</h3><span class="pill pending">${esc(String(t.duration||30))} min</span></div>
+    <p class="desc">${esc(t.subject)} • ${t.questions.length} questions</p>
+    <form id="portalTestForm">
+      ${t.questions.map((q,i)=>`
+        <div class="portalcard">
+          <strong>Q${i+1}. ${esc(q.text)}</strong>
+          ${q.options.map((o,j)=>`
+            <label style="font-weight:normal;display:block;padding:8px 0">
+              <input type="radio" name="portalQ${i}" value="${String.fromCharCode(65+j)}">
+              ${String.fromCharCode(65+j)}. ${esc(o)}
+            </label>`).join("")}
+        </div>`).join("")}
+      <button type="button" class="signin" onclick="submitPortalTest()">Submit Test →</button>
+    </form>`;
+  content.scrollIntoView({behavior:"smooth",block:"start"});
+};
+
+window.submitPortalTest=async function(){
+  const t=window.activeOnlineTest;
+  const form=document.getElementById("portalTestForm");
+  if(!t||!form)return;
+
+  let score=0,total=0;
+  const answers=[];
+  t.questions.forEach((q,i)=>{
+    const selected=form.querySelector(`[name="portalQ${i}"]:checked`);
+    const value=selected?.value||"";
+    answers.push(value);
+    const marks=Number(q.marks)||1;
+    total+=marks;
+    if(value===q.answer)score+=marks;
+  });
+
+  const result={
+    testId:t.id,
+    testName:t.name,
+    studentUid:window.cloudUser?.uid||currentStudent()?.id||"",
+    studentName:window.cloudUserProfile?.name||document.getElementById("profileName").textContent||"",
+    answers,score,total
+  };
+
+  try{
+    if(window.firebaseState?.ready){
+      await cloudCreate("results",result);
+    }else{
+      const d=db();
+      d.results=d.results||[];
+      d.results.push({id:Date.now(),submittedAt:new Date().toISOString(),...result});
+      saveDB(d);
+    }
+    const pct=total?Math.round(score/total*100):0;
+    document.getElementById("activeTestContent").innerHTML=`
+      <h2>Test Submitted ✅</h2>
+      <p class="desc">${esc(t.name)}</p>
+      <div style="font-size:32px;font-weight:800;margin:15px 0">${score}/${total}</div>
+      <p><b>${pct}%</b></p>
+      <button type="button" class="signin" onclick="document.getElementById('activeTestCard').style.display='none';studentPage('studentResults',document.querySelectorAll('#studentPortal .navbtn')[5])">View Results</button>`;
+    window.activeOnlineTest=null;
+  }catch(e){
+    alert(e.message||"Could not submit the test.");
+  }
+};
+
+
+/* STANDALONE TEST ENGINE MERGED INTO MAIN PORTAL */
+
+
+
+
+window.beginPortalTest=function(){
+  const t=window.activeOnlineTest;
+  if(!t)return;
+
+  const content=document.getElementById("activeTestContent");
+  content.innerHTML=`
+    <div class="cardhead">
+      <h3>${esc(t.name)}</h3>
+      <span class="pill pending">${esc(String(t.duration||30))} min</span>
+    </div>
+    <p class="desc">${esc(t.subject)} • ${t.questions.length} questions</p>
+    <form id="portalTestForm">
+      ${t.questions.map((q,i)=>`
+        <div class="portalcard">
+          <strong>Q${i+1}. ${esc(q.text)}</strong>
+          ${q.options.map((o,j)=>`
+            <label style="font-weight:normal;display:block;padding:8px 0">
+              <input type="radio" name="portalQ${i}" value="${String.fromCharCode(65+j)}">
+              ${String.fromCharCode(65+j)}. ${esc(o)}
+            </label>
+          `).join("")}
+        </div>
+      `).join("")}
+      <button type="button" class="signin" onclick="submitPortalTest()">Submit Test →</button>
+    </form>
+  `;
+  content.scrollIntoView({behavior:"smooth",block:"start"});
+};
+
+window.submitPortalTest=async function(){
+  const t=window.activeOnlineTest;
+  const form=document.getElementById("portalTestForm");
+  if(!t||!form)return;
+
+  let score=0,total=0;
+  const answers=[];
+
+  t.questions.forEach((q,i)=>{
+    const selected=form.querySelector(`[name="portalQ${i}"]:checked`);
+    const value=selected?.value||"";
+    answers.push(value);
+    const marks=Number(q.marks)||1;
+    total+=marks;
+    if(value===q.answer)score+=marks;
+  });
+
+  const result={
+    testId:t.id,
+    testName:t.name,
+    studentUid:window.cloudUser?.uid||currentStudent()?.id||"",
+    studentName:window.cloudUserProfile?.name||document.getElementById("profileName")?.textContent||"",
+    answers,score,total
+  };
+
+  try{
+    if(window.firebaseState?.ready){
+      await cloudCreate("results",result);
+    }else{
+      const d=db();
+      d.results=d.results||[];
+      d.results.push({id:Date.now(),submittedAt:new Date().toISOString(),...result});
+      saveDB(d);
+    }
+
+    const pct=total?Math.round(score/total*100):0;
+    document.getElementById("activeTestContent").innerHTML=`
+      <h2>Test Submitted ✅</h2>
+      <p class="desc">${esc(t.name)}</p>
+      <div style="font-size:32px;font-weight:800;margin:15px 0">${score}/${total}</div>
+      <p><b>${pct}%</b></p>
+      <button type="button" class="signin" onclick="document.getElementById('activeTestCard').style.display='none'">Back to Tests</button>
+    `;
+    window.activeOnlineTest=null;
+  }catch(e){
+    alert(e.message||"Could not submit the test.");
+  }
+};
+
+window.renderStudentTestList=function(items){
+  const box=document.getElementById("testList");
+  if(!box)return;
+  if(!items.length){
+    box.innerHTML='<div class="empty">No tests available.</div>';
+    return;
+  }
+
+  /* Front-page test UI copied from the working standalone test portal:
+     normal button + direct inline onclick. */
+  box.innerHTML=items.map(t=>{
+    const hasQuestions=Array.isArray(t.questions)&&t.questions.length>0;
+    let action='';
+
+    if(t.type==="pdf"){
+      action=(t.pdfUrl||t.link)
+        ? `<button type="button" class="action" onclick="attemptTestFromPortal('${esc(t.id)}')">OPEN PDF</button>`
+        : `<span class="pill pending">PDF NOT ATTACHED</span>`;
+    }else{
+      action=hasQuestions
+        ? `<button type="button" class="action" onclick="attemptTestFromPortal('${esc(t.id)}')">ATTEMPT TEST →</button>`
+        : `<span class="pill pending">QUESTIONS NOT ADDED</span>`;
+    }
+
+    return `
+      <div class="item">
+        <div class="ico">🧪</div>
+        <div class="itemmain">
+          <strong>${esc(t.name)}</strong>
+          <small>${esc(t.subject)} • ${esc(t.date||"Available now")} • ${t.type==="pdf"?"PDF Test":"Online Test"}</small>
+        </div>
+        ${action}
+      </div>
+    `;
+  }).join("");
+};
+window.attemptTestFromPortal=async function(testId){
+  let t=null;
+  try{
+    if(window.firebaseState?.ready){
+      const tests=await cloudAll("tests");
+      t=tests.find(x=>String(x.id)===String(testId));
+    }else{
+      const d=db(); t=(d.tests||[]).find(x=>String(x.id)===String(testId));
+    }
+    if(!t){alert("Test not found. Please refresh the page.");return;}
+    if(t.type==="pdf"){
+      const url=t.pdfUrl||t.link;
+      if(url)window.open(url,"_blank"); else alert("This PDF has not been attached.");
+      return;
+    }
+    if(!Array.isArray(t.questions)||!t.questions.length){alert("This test has no questions. Ask the teacher to publish it again with questions.");return;}
+    window.activeOnlineTest=t;
+    const card=document.getElementById("activeTestCard"), content=document.getElementById("activeTestContent");
+    if(!card||!content){alert("Test screen is unavailable. Please refresh the page.");return;}
+    card.style.display="block";
+    content.innerHTML=`<h2>${esc(t.name)}</h2><p class="desc">${esc(t.subject)} • ${t.questions.length} questions • ${esc(String(t.duration||30))} minutes</p><div style="background:#f5f6f8;border-radius:10px;padding:14px;margin:18px 0"><b>Ready to attempt?</b><p class="desc" style="margin:5px 0 0">Click below to start the test.</p></div><button type="button" class="signin" id="beginPortalTestBtn">▶ Attempt Test</button>`;
+    document.getElementById("beginPortalTestBtn").addEventListener("click",window.beginPortalTest,{once:true});
+    card.scrollIntoView({behavior:"smooth",block:"start"});
+  }catch(e){console.error(e);alert(e.message||"Could not open the test.");}
+};
+
+window.offerBrowserCredentialSave=async function(email,password){
+  if(!email||!password)return;
+  try{
+    if(window.PasswordCredential && navigator.credentials && navigator.credentials.store){
+      const cred=new PasswordCredential({id:email,password:password,name:email});
+      await navigator.credentials.store(cred);
+    }
+  }catch(e){ console.debug("Browser credential save unavailable",e); }
+};
+
+window.firebaseRegisterStudent=async function(name,email,pass,cls,batch){
+  const c=await createUserWithEmailAndPassword(auth,email,pass);
+  await setDoc(doc(cloudDB,"users",c.user.uid),{
+    name,email,class:cls,batch,role:"student",createdAt:serverTimestamp()
+  });
+  window.cloudUserProfile={id:c.user.uid,name,email,class:cls,batch,role:"student"};
+  await recordLogin(c.user,window.cloudUserProfile);
+  showStudent(window.cloudUserProfile);
+  showSaveLoginPrompt(name,email,"student",cls,batch);
+  offerBrowserCredentialSave(email,pass);
+};
+
+window.firebaseTeacherLogin=async function(email,pass){
+  const c=await signInWithEmailAndPassword(auth,email,pass);
+  const p=await loadProfile(c.user.uid);
+  if(!p || !["teacher","admin"].includes(p.role)){
+    await signOut(auth);
+    throw new Error("This account is not authorized as a teacher/admin.");
+  }
+  window.cloudUserProfile=p;
+  await recordLogin(c.user,p);
+  showSaveLoginPrompt(p.name,p.email,p.role);
+  offerBrowserCredentialSave(email,pass);
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('teacherPortal').classList.add('active');
+  document.getElementById('teacherWelcome').textContent=`Welcome, ${p.name} • ${p.email}`;
+  refreshTeacher();
+};
+
+window.firebaseMasterLogin=async function(email,pass){
+  if(!firebaseReady) throw new Error("Master Control requires Firebase cloud mode. Add your Firebase config first.");
+  const c=await signInWithEmailAndPassword(auth,email,pass);
+  const p=await loadProfile(c.user.uid);
+  if(!p || p.role!=="master"){
+    await signOut(auth);
+    throw new Error("This account is not authorized for Master Control.");
+  }
+  window.cloudUserProfile=p;
+  await recordLogin(c.user,p);
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('masterPortal').classList.add('active');
+  document.getElementById('masterWelcome').textContent=`Welcome, ${p.name||p.email} • Master access`;
+  await refreshMasterControl();
+};
+
+window.refreshMasterControl=async function(){
+  if(!firebaseReady || !window.cloudUserProfile || window.cloudUserProfile.role!=="master") return;
+  const snap=await getDocs(collection(cloudDB,"users"));
+  const students=snap.docs.map(d=>({id:d.id,...d.data()})).filter(x=>x.role==="student");
+  window.masterStudentsCache=students;
+  const classes=new Set(students.map(x=>x.class).filter(Boolean));
+  const batches=new Set(students.map(x=>x.batch).filter(Boolean));
+  document.getElementById('masterStudentCount').textContent=students.length;
+  document.getElementById('masterClassCount').textContent=classes.size;
+  document.getElementById('masterBatchCount').textContent=batches.size;
+  renderMasterStudents();
+};
+
+window.renderMasterStudents=function(){
+  const box=document.getElementById('masterStudentsList');
+  if(!box) return;
+  const q=(document.getElementById('masterStudentSearch')?.value||'').trim().toLowerCase();
+  const students=(window.masterStudentsCache||[]).filter(s=>[s.name,s.email,s.class,s.batch].some(v=>String(v||'').toLowerCase().includes(q)));
+  if(!students.length){ box.innerHTML='<div class="empty">No matching student profiles.</div>'; return; }
+  box.innerHTML='<table class="table"><tr><th>Name</th><th>Email</th><th>Class</th><th>Batch</th><th>Profile</th><th>Action</th></tr>'+students.map(s=>{
+    const created=s.createdAt?.seconds?new Date(s.createdAt.seconds*1000).toLocaleDateString():'—';
+    return `<tr><td><b>${esc(s.name||'—')}</b><small class="muted">Created ${esc(created)}</small></td><td>${esc(s.email||'—')}</td><td>${esc(s.class||'—')}</td><td>${esc(s.batch||'—')}</td><td><button type="button" class="action" onclick="viewMasterStudent('${esc(s.id)}')">VIEW</button></td><td><button type="button" class="action danger" onclick="removeMasterStudent('${esc(s.id)}')">REMOVE</button></td></tr>`;
+  }).join('')+'</table>';
+};
+
+window.viewMasterStudent=function(uid){
+  const s=(window.masterStudentsCache||[]).find(x=>x.id===uid);
+  if(!s) return;
+  const created=s.createdAt?.seconds?new Date(s.createdAt.seconds*1000).toLocaleString():'Not available';
+  alert(`Student Profile\n\nName: ${s.name||'—'}\nEmail: ${s.email||'—'}\nClass: ${s.class||'—'}\nBatch: ${s.batch||'—'}\nCreated: ${created}\nUID: ${uid}`);
+};
+
+window.removeMasterStudent=async function(uid){
+  if(!firebaseReady || window.cloudUserProfile?.role!=="master") { alert('Master access is required.'); return; }
+  const s=(window.masterStudentsCache||[]).find(x=>x.id===uid);
+  if(!s) return;
+  const ok=confirm(`Remove the Firestore profile for ${s.name||s.email}?\n\nThis removes the student profile document only. The Firebase Authentication login account will remain until a secure Admin SDK/Cloud Function deletes it.`);
+  if(!ok) return;
+  try{
+    await deleteDoc(doc(cloudDB,"users",uid));
+    await refreshMasterControl();
+    alert('Student profile removed from Firestore.');
+  }catch(e){ alert(e.message||'Could not remove the student profile.'); }
+};
+
+window.firebaseLogout=async function(){
+  if(firebaseReady && auth) await signOut(auth);
+  goHome();
+};
+
+window.cloudCreate=async function(name,data){
+  await addDoc(collection(cloudDB,name),{...data,createdBy:auth.currentUser.uid,createdAt:serverTimestamp()});
+};
+
+window.cloudForStudent=async function(name,s){
+  const q=query(collection(cloudDB,name),where("class","==",s.class),where("batch","==",s.batch));
+  const snap=await getDocs(q);
+  return snap.docs.map(d=>({id:d.id,...d.data()}));
+};
+
+window.cloudAll=async function(name){
+  const snap=await getDocs(collection(cloudDB,name));
+  return snap.docs.map(d=>({id:d.id,...d.data()}));
+};
+
+
+window.refreshStudentResults=async function(){
+  const profile=window.cloudUserProfile||currentStudent();
+  if(!profile){return}
+  let rows=[];
+  if(window.firebaseState?.ready){
+    const all=await cloudAll("results");
+    const uid=window.cloudUser?.uid||profile.id;
+    rows=all.filter(x=>x.studentUid===uid);
+  }else{
+    const d=db();
+    rows=(d.results||[]).filter(x=>x.studentUid===profile.id);
+  }
+  studentResultsList.innerHTML=rows.length
+    ? rows.map(x=>`<div class="item"><div class="ico">📊</div><div class="itemmain"><strong>${esc(x.testName)}</strong><small>${x.score}/${x.total} • ${x.total?Math.round(x.score/x.total*100):0}%</small></div><span class="pill">${x.score}/${x.total}</span></div>`).join("")
+    : '<div class="empty">No results yet.</div>';
+};
+
+window.cloudRefreshStudent=async function(s){
+  const [tests,anns,hw,mat]=await Promise.all([
+    cloudForStudent("tests",s),
+    cloudForStudent("announcements",s),
+    cloudForStudent("homework",s),
+    cloudForStudent("material",s)
+  ]);
+  testCount.textContent=tests.length;
+  homeworkCount.textContent=hw.length;
+  renderStudentTestList(tests);
+  dashboardTests.innerHTML=testList.innerHTML;
+  dashboardAnnouncements.innerHTML=anns.length
+    ? anns.slice(-5).reverse().map(x=>`<div class="notice"><strong>${esc(x.title)}</strong><p>${esc(x.message)}</p></div>`).join("")
+    : '<div class="empty">No announcements yet.</div>';
+  dashboardHomework.innerHTML=hw.length
+    ? hw.map(x=>`<div class="item"><div class="ico">📝</div><div class="itemmain"><strong>${esc(x.title)}</strong><small>${esc(x.subject)} • Due ${esc(x.due||"Not set")}</small></div><span class="pill pending">Pending</span></div>`).join("")
+    : '<div class="empty">No homework assigned.</div>';
+  homeworkList.innerHTML=dashboardHomework.innerHTML;
+  materialList.innerHTML=mat.length
+    ? mat.map(x=>`<div class="item"><div class="ico">📄</div><div class="itemmain"><strong>${esc(x.title)}</strong><small>${esc(x.subject)}</small></div>${x.link?`<a class="action" href="${esc(x.link)}" target="_blank">OPEN</a>`:""}</div>`).join("")
+    : '<div class="empty">No study material yet.</div>';
+};
+
+window.cloudRefreshTeacher=async function(){
+  const [users,tests,anns,hw,mat]=await Promise.all([
+    cloudAll("users"),cloudAll("tests"),cloudAll("announcements"),cloudAll("homework"),cloudAll("material")
+  ]);
+  const students=users.filter(x=>x.role==="student");
+  teacherStudentCount.textContent=students.length;
+  teacherTestCount.textContent=tests.length;
+  teacherAnnouncementCount.textContent=anns.length;
+  teacherHomeworkCount.textContent=hw.length;
+  teacherTestsList.innerHTML=tests.length?tests.map(x=>`<div class="item"><div class="itemmain"><strong>${esc(x.name)}</strong><small>${esc(x.subject)} • ${esc(x.class)} • ${esc(x.batch)} • ${x.type==="pdf"?"PDF":"Online"}${x.questions?.length?` • ${x.questions.length} questions`:""}</small></div></div>`).join(""):'<div class="empty">No tests published.</div>';
+  teacherAnnouncementsList.innerHTML=anns.length?anns.map(x=>`<div class="notice"><strong>${esc(x.title)}</strong><p>${esc(x.class)} • ${esc(x.batch)} — ${esc(x.message)}</p></div>`).join(""):'<div class="empty">No announcements published.</div>';
+  teacherHomeworkList.innerHTML=hw.length?hw.map(x=>`<div class="item"><div class="itemmain"><strong>${esc(x.title)}</strong><small>${esc(x.subject)} • ${esc(x.class)} • ${esc(x.batch)}</small></div></div>`).join(""):'<div class="empty">No homework published.</div>';
+  teacherMaterialList.innerHTML=mat.length?mat.map(x=>`<div class="item"><div class="itemmain"><strong>${esc(x.title)}</strong><small>${esc(x.subject)} • ${esc(x.class)} • ${esc(x.batch)}</small></div></div>`).join(""):'<div class="empty">No material published.</div>';
+  studentsList.innerHTML=students.length?'<table class="table"><tr><th>Name</th><th>Email</th><th>Class</th><th>Batch</th></tr>'+students.map(s=>`<tr><td>${esc(s.name)}</td><td>${esc(s.email)}</td><td>${esc(s.class)}</td><td>${esc(s.batch)}</td></tr>`).join("")+'</table>':'<div class="empty">No students registered.</div>';
+};
+
+if(firebaseReady){
+  onAuthStateChanged(auth,async user=>{
+    window.cloudUser=user;
+    if(user) window.cloudUserProfile=await loadProfile(user.uid);
+  });
+}
+</script>
+
+<script>
+const DBKEY='jainTutorialsDB_v1';
+let loginRole='student';
+
+function db(){
+ try{return JSON.parse(localStorage.getItem(DBKEY))||{students:[],tests:[],announcements:[],homework:[],material:[],results:[]}}
+ catch(e){return {students:[],tests:[],announcements:[],homework:[],material:[],results:[]}}
+}
+function saveDB(data){localStorage.setItem(DBKEY,JSON.stringify(data))}
+function openLogin(role){
+ loginRole=role;
+ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+ document.getElementById('loginScreen').classList.add('active');
+ document.getElementById('loginTitle').textContent=role==='student'?'Student Portal':'Teacher / Admin Portal';
+ document.getElementById('loginSubtitle').textContent=role==='student'?'Sign in / create your student session.':'Sign in to manage academic data.';
+ document.getElementById('studentFields').style.display=role==='student'?'block':'none';
+ document.getElementById('teacherFields').style.display=role==='teacher'?'block':'none';
+ document.getElementById('masterFields').style.display=role==='master'?'block':'none';
+ document.getElementById('loginTitle').textContent=role==='student'?'Student Portal':role==='teacher'?'Teacher / Admin Portal':'Master Control';
+ document.getElementById('loginSubtitle').textContent=role==='student'?'Sign in / create your student session.':role==='teacher'?'Sign in to manage academic data.':'Secure master access to student profiles.';
+ window.scrollTo(0,0);
+}
+  loadSavedLogin();
+async function login(){
+ if(loginRole==='student'){
+  const name=fullName.value.trim(), email=emailInput().trim(), pass=password.value, cls=studentClass.value, batch=studentBatch.value;
+  if(!name||!email.includes('@')||!pass||!cls||!batch){alert('Please complete all student fields.');return}
+  try{
+   if(window.firebaseState?.ready) await firebaseRegisterStudent(name,email,pass,cls,batch);
+   else{
+    let data=db(), existing=data.students.find(s=>s.email.toLowerCase()===email.toLowerCase());
+    if(!existing){existing={id:'JT-'+Date.now(),name,email,class:cls,batch};data.students.push(existing);saveDB(data)}
+    showStudent(existing);
+    showSaveLoginPrompt(name,email,"student",cls,batch);
+    offerBrowserCredentialSave(email,pass);
+   }
+  }catch(e){alert(e.message||'Could not create student account.')}
+ }else if(loginRole==='master'){
+  const email=masterEmail.value.trim(), pass=masterPassword.value;
+  if(!email.includes('@')||!pass){alert('Enter the master email and password.');return}
+  try{ await firebaseMasterLogin(email,pass); }catch(e){ alert(e.message||'Master login failed.'); }
+ }else{
+  const name=teacherName.value.trim(), email=teacherEmail.value.trim(), pass=teacherPassword.value;
+  if(!name||!email.includes('@')||!pass){alert('Please complete all teacher fields.');return}
+  try{
+   if(window.firebaseState?.ready) await firebaseTeacherLogin(email,pass);
+   else{
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById('teacherPortal').classList.add('active');
+    document.getElementById('teacherWelcome').textContent='Prototype mode: '+name+' • '+email;
+    refreshTeacher();
+    showSaveLoginPrompt(name,email,'teacher');
+    offerBrowserCredentialSave(email,pass);
+   }
+  }catch(e){alert(e.message||'Teacher login failed.')}
+ }
+}
+function emailInput(){return document.getElementById('email').value}
+function showStudent(s){
+ document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+ document.getElementById('studentPortal').classList.add('active');
+ document.getElementById('profileName').textContent=s.name;
+ document.getElementById('profileEmail').textContent=s.email;
+ document.getElementById('profileClass').textContent=s.class;
+ document.getElementById('profileBatch').textContent=s.batch;
+ document.getElementById('studentWelcome').textContent='Welcome, '+s.name+' 👋';
+ document.getElementById('studentClassBatch').textContent=s.class+' • '+s.batch;
+ document.getElementById('studentAvatar').textContent=s.name.split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0].toUpperCase()).join('');
+ refreshStudent(s);
+}
+function currentStudent(){
+ const d=db(); const email=document.getElementById('profileEmail').textContent;
+ return d.students.find(s=>s.email===email)||null;
+}
+function targetMatch(item,s){return (item.class===s.class||item.class==='All Classes')&&(item.batch===s.batch||item.batch==='All Batches')}
+async function refreshStudent(s){
+  if(window.firebaseState?.ready){
+    try{ await cloudRefreshStudent(s); return; }catch(e){ console.error(e); }
+  }
+  const d=db();
+  const tests=(d.tests||[]).filter(x=>targetMatch(x,s));
+  const anns=(d.announcements||[]).filter(x=>targetMatch(x,s));
+  const hw=(d.homework||[]).filter(x=>targetMatch(x,s));
+  const mat=(d.material||[]).filter(x=>targetMatch(x,s));
+
+  testCount.textContent=tests.length;
+  homeworkCount.textContent=hw.length;
+  renderStudentTestList(tests);
+
+  dashboardTests.innerHTML=testList.innerHTML;
+  dashboardAnnouncements.innerHTML=anns.length
+    ? anns.slice(-5).reverse().map(x=>`<div class="notice"><strong>${esc(x.title)}</strong><p>${esc(x.message)}</p></div>`).join("")
+    : '<div class="empty">No announcements yet.';
+  dashboardHomework.innerHTML=hw.length
+    ? hw.map(x=>`<div class="item"><div class="ico">📝</div><div class="itemmain"><strong>${esc(x.title)}</strong><small>${esc(x.subject)} • Due ${esc(x.due||"Not set")}</small></div><span class="pill pending">Pending</span></div>`).join("")
+    : '<div class="empty">No homework assigned.</div>';
+  homeworkList.innerHTML=dashboardHomework.innerHTML;
+  materialList.innerHTML=mat.length
+    ? mat.map(x=>`<div class="item"><div class="ico">📄</div><div class="itemmain"><strong>${esc(x.title)}</strong><small>${esc(x.subject)}</small></div>${x.link?`<a class="action" href="${esc(x.link)}" target="_blank">OPEN</a>`:""}</div>`).join("")
+    : '<div class="empty">No study material yet.</div>';
+}
+async function createTest(){
+  const type=document.getElementById("testType").value;
+  const x={
+    name:testName.value.trim(),
+    subject:testSubject.value.trim(),
+    class:testClass.value,
+    batch:testBatch.value,
+    date:testDate.value,
+    type
+  };
+
+  if(!x.name||!x.subject){
+    alert("Enter test name and subject.");
+    return;
+  }
+
+  try{
+    if(window.firebaseState?.ready){
+      if(type==="pdf"){
+        const file=document.getElementById("testPdf").files[0];
+        if(!file){alert("Choose a PDF first.");return}
+        if(file.type!=="application/pdf"){alert("Only PDF files are allowed.");return}
+
+        const storage=window.firebaseState.storage;
+        const user=window.firebaseState.auth.currentUser;
+        if(!storage||!user){alert("Firebase authentication is not ready.");return}
+
+        const storageRef=ref(storage,`tests/${user.uid}/${Date.now()}_${file.name}`);
+        await uploadBytes(storageRef,file);
+        x.pdfUrl=await getDownloadURL(storageRef);
+        x.fileName=file.name;
+      }else{
+        x.duration=Number(testDuration.value)||30;
+        x.questions=collectQuestions();
+
+        if(!x.questions.length){
+          alert("Add at least one question.");
+          return;
+        }
+        if(x.questions.some(q=>!q.text||q.options.some(o=>!o)||!q.answer)){
+          alert("Complete every question, all four options and the correct answer.");
+          return;
+        }
+      }
+
+      await cloudCreate("tests",x);
+    }else{
+      if(type==="pdf"){
+        alert("PDF upload requires Firebase Storage. Online Test works in this standalone/local mode.");
+        return;
+      }
+
+      x.duration=Number(testDuration.value)||30;
+      x.questions=collectQuestions();
+
+      if(!x.questions.length){
+        alert("Add at least one question.");
+        return;
+      }
+      if(x.questions.some(q=>!q.text||q.options.some(o=>!o)||!q.answer)){
+        alert("Complete every question, all four options and the correct answer.");
+        return;
+      }
+
+      const d=db();
+      d.tests=d.tests||[];
+      d.tests.push({id:Date.now(),...x});
+      saveDB(d);
+    }
+
+    testName.value="";
+    testSubject.value="";
+    testDate.value="";
+    testPdf.value="";
+    questionBuilder.innerHTML="";
+    toggleTestType();
+    await refreshTeacher();
+    alert("Test published successfully. Matching students can now attempt it.");
+  }catch(e){
+    alert(e.message||"Could not publish test.");
+  }
+}
+async function createAnnouncement(){
+ const x={title:announcementTitle.value.trim(),message:announcementMessage.value.trim(),class:announcementClass.value,batch:announcementBatch.value};
+ if(!x.title||!x.message){alert('Enter a title and message.');return}
+ if(x.class==='All Classes'||x.batch==='All Batches'){alert('Choose a specific class and batch in cloud mode.');return}
+ try{
+  if(window.firebaseState?.ready) await cloudCreate("announcements",x);
+  else{const d=db();d.announcements.push({id:Date.now(),...x});saveDB(d)}
+  announcementTitle.value='';announcementMessage.value='';refreshTeacher();alert('Announcement published.')
+ }catch(e){alert(e.message||'Could not publish announcement.')}
+}
+async function createHomework(){
+ const x={title:homeworkTitle.value.trim(),subject:homeworkSubject.value.trim(),class:homeworkClass.value,batch:homeworkBatch.value,due:homeworkDue.value};
+ if(!x.title||!x.subject){alert('Enter homework title and subject.');return}
+ try{
+  if(window.firebaseState?.ready) await cloudCreate("homework",x);
+  else{const d=db();d.homework.push({id:Date.now(),...x});saveDB(d)}
+  homeworkTitle.value='';homeworkSubject.value='';homeworkDue.value='';refreshTeacher();alert('Homework published.')
+ }catch(e){alert(e.message||'Could not publish homework.')}
+}
+async function createMaterial(){
+ const x={title:materialTitle.value.trim(),subject:materialSubject.value.trim(),class:materialClass.value,batch:materialBatch.value,link:materialLink.value.trim()};
+ if(!x.title||!x.subject){alert('Enter material title and subject.');return}
+ try{
+  if(window.firebaseState?.ready) await cloudCreate("material",x);
+  else{const d=db();d.material.push({id:Date.now(),...x});saveDB(d)}
+  materialTitle.value='';materialSubject.value='';materialLink.value='';refreshTeacher();alert('Material published.')
+ }catch(e){alert(e.message||'Could not publish material.')}
+}
+function refreshTeacher(){
+ const d=db();teacherStudentCount.textContent=d.students.length;teacherTestCount.textContent=d.tests.length;teacherAnnouncementCount.textContent=d.announcements.length;teacherHomeworkCount.textContent=d.homework.length;
+ teacherTestsList.innerHTML=d.tests.length?d.tests.map(x=>'<div class="item"><div class="itemmain"><strong>'+esc(x.name)+'</strong><small>'+esc(x.subject)+' • '+esc(x.class)+' • '+esc(x.batch)+'</small></div></div>').join(''):'<div class="empty">No tests published.</div>';
+ teacherAnnouncementsList.innerHTML=d.announcements.length?d.announcements.map(x=>'<div class="notice"><strong>'+esc(x.title)+'</strong><p>'+esc(x.class)+' • '+esc(x.batch)+' — '+esc(x.message)+'</p></div>').join(''):'<div class="empty">No announcements published.</div>';
+ teacherHomeworkList.innerHTML=d.homework.length?d.homework.map(x=>'<div class="item"><div class="itemmain"><strong>'+esc(x.title)+'</strong><small>'+esc(x.subject)+' • '+esc(x.class)+' • '+esc(x.batch)+'</small></div></div>').join(''):'<div class="empty">No homework published.</div>';
+ teacherMaterialList.innerHTML=d.material.length?d.material.map(x=>'<div class="item"><div class="itemmain"><strong>'+esc(x.title)+'</strong><small>'+esc(x.subject)+' • '+esc(x.class)+' • '+esc(x.batch)+'</small></div></div>').join(''):'<div class="empty">No material published.</div>';
+ studentsList.innerHTML=d.students.length?'<table class="table"><tr><th>Name</th><th>Email</th><th>Class</th><th>Batch</th></tr>'+d.students.map(s=>'<tr><td>'+esc(s.name)+'</td><td>'+esc(s.email)+'</td><td>'+esc(s.class)+'</td><td>'+esc(s.batch)+'</td></tr>').join('')+'</table>':'<div class="empty">No students registered.</div>';
+}
+function studentPage(id,btn){if(id==="studentResults"&&window.refreshStudentResults) refreshStudentResults();document.querySelectorAll('#studentPortal .page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('#studentPortal .navbtn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');const s=currentStudent();if(s)refreshStudent(s);window.scrollTo(0,0)}
+function masterPage(id,btn){if(id==='masterStudents'&&window.firebaseState?.ready) refreshMasterControl();document.querySelectorAll('#masterPortal .page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('#masterPortal .navbtn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');window.scrollTo(0,0)}
+function teacherPage(id,btn){if(id==="manageLoginHistory"&&window.firebaseState?.ready) refreshLoginHistory();document.querySelectorAll('#teacherPortal .page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('#teacherPortal .navbtn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');refreshTeacher();window.scrollTo(0,0)}
+function goHome(){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('homeScreen').classList.add('active');window.scrollTo(0,0)}
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+  if(document.getElementById("testType") && typeof toggleTestType==="function") toggleTestType();
+});
+</script>
+
+
+<script>
+document.addEventListener("click", async function(e){
+  const attempt=e.target.closest(".jt-attempt-test");
+  const pdf=e.target.closest(".jt-open-pdf");
+  const btn=attempt||pdf;
+  if(!btn)return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  const id=btn.getAttribute("data-test-id");
+  if(typeof window.attemptTestFromPortal==="function"){
+    await window.attemptTestFromPortal(id);
+  }else{
+    alert("Test system is still loading. Please try again.");
+  }
+}, true);
+
+document.addEventListener("DOMContentLoaded",function(){
+  document.querySelectorAll(".jt-attempt-test,.jt-open-pdf").forEach(function(btn){
+    btn.style.pointerEvents="auto";
+    btn.style.position="relative";
+    btn.style.zIndex="9999";
+  });
+});
+</script>
+
+</body>
+</html>
